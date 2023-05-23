@@ -1,0 +1,44 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Load the Titanic dataset
+titanic_df = sns.load_dataset('titanic')
+
+titanic_df .head(20)
+titanic_df .tail(20)
+
+titanic_df .describe
+titanic_df .info()
+titanic_df .isnull()
+titanic_df .isnull().sum()
+df['age']=df['age'].fillna(df['age'].mean())
+
+# Create a box plot using seaborn
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='sex', y='age', hue='survived', data=titanic_df)
+plt.title('Age Distribution by Gender and Survival Status')
+plt.xlabel('Gender')
+plt.ylabel('Age')
+plt.show()
+
+sns.countplot(x='sex',data=df)
+plt.show()
+
+titanic_df['sex'].value_counts().plot(kind='pie')
+plt.show()
+
+sns.histplot(titanic_df['age'], bins=5)
+plt.show()
+
+sns.displot(titanic_df['age'])
+plt.show()
+
+
+median=titanic_df['age'].median()
+median
+refined_df=titanic_df
+lower_bound = median - 1.5 * titanic_df['age'].std()
+upper_bound = median + 1.5 * titanic_df['age'].std()
+titanic_df.loc[titanic_df['age'] > upper_bound, 'age'] = median
+refined_df

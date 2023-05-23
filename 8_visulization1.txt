@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+dataset = sns.load_dataset('titanic')
+dataset.head()
+
+# Plot histogram with KDE
+plt.figure(figsize=(10, 6))
+sns.histplot(data=dataset, x='fare', kde=True)
+plt.title('Ticket Price Distribution with KDE')
+plt.xlabel('Fare')
+plt.ylabel('Count')
+plt.show()
+
+# Plot histogram without KDE
+plt.figure(figsize=(10, 6))
+sns.histplot(data=dataset, x='fare', kde=False)
+plt.title('Ticket Price Distribution without KDE')
+plt.xlabel('Fare')
+plt.ylabel('Count')
+plt.show()
+
+sns.distplot(dataset['fare'])
+
+dataset = dataset.dropna()
+sns.pairplot(dataset)
+
+sns.rugplot(dataset['fare'])
+
+sns.boxplot(x='sex', y='age', data=dataset)
+sns.boxplot(x='sex', y='age', data=dataset, hue="survived")
+
+sns.stripplot(x='sex', y='age', data=dataset)
+sns.swarmplot(x='sex', y='age', data=dataset)
+sns.swarmplot(x='sex', y='age', data=dataset, hue='survived')

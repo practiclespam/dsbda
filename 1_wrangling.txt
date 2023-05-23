@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np
+df=pd.read_csv("Iris.csv")
+df
+
+df.head()
+df.tail()
+df.index
+df.shape
+df.dtypes
+df.columns
+df.iloc[0:3,0:4]
+
+df.sort_index(axis=1,ascending=True)
+df.sort_index(axis=1,ascending=False)
+df.sort_values(by='SepalWidthCm')
+df[df.columns[2:4]].iloc[5:10]
+
+
+df.isnull()
+df.isnull().any()
+df.isnull().sum()
+df.isnull().sum(axis = 1)
+df.isna().sum()
+df.isna()
+
+df.describe(include='all')
+df.describe()
+
+df.dtypes
+df['SepalWidthCm']= df['SepalWidthCm'].astype("int")
+df.dtypes
+
+from sklearn import preprocessing
+df.head()
+min_max_scaler = preprocessing.MinMaxScaler()
+x=df.iloc[:,:4]
+x_scaled = min_max_scaler.fit_transform(x)
+df_normalized = pd.DataFrame(x_scaled)
+df_normalized
+
+
+
+from sklearn import preprocessing
+df['Species'].unique()
+label_encoder=preprocessing.LabelEncoder()
+df['Species']=label_encoder.fit_transform(df['Species'])
+df['Species'].unique()
+df
